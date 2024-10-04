@@ -62,12 +62,13 @@ client.on('message_create', async message =>{
                                                 const relato = msgR.body
                                                 client.sendMessage(telefone, `Prezado(a) ${nome}. É um prazer lhe atender, Informo que seu chamado foi aberto e direcionado ao Gerente Regional para a tratativa, pedimos desculpas desde já, e podemos garantir que estamos trabalhando na melhora do atendimento e na comunicação! \n\nAtenciosamente \n\n*CNS* 🤖 - _©️ Desenvolvido por Guilherme Breve 2024_`)
                                                 client.sendMessage(grupo, `*Novo Chamado* - ${unidade} 🏛️
-🧑🏻 Solicitante: ${nome}
-📞 Telefone: ${telefone.replace('@c.us','')}
-🅰️ Tipo de Chamado: ${nomeTarefa}
-🔓 Relato: ${relato}
+🧑🏻 *Solicitante:* ${nome}
+📞 *Telefone:* ${telefone.replace('@c.us','')}
+🅰️ *Tipo de Chamado:* ${nomeTarefa}
+🔓 *Relato:* ${relato}
 
-Prezados, segue relato do cliente que abriu um chamado pelo atendimento ao cliente interno, peço que tenham compreensão e tratem o caso da melhor maneira. 💫🌟`)
+
+ -- Prezados, segue relato do cliente que abriu um chamado pelo atendimento ao cliente interno, peço que tenham compreensão e tratem o caso da melhor maneira. 💫🌟`)
                                                 zerar()
                                                 // Abrir chamado
                                             }
