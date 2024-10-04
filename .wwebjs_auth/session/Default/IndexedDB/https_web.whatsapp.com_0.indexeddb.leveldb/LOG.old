@@ -1,0 +1,15 @@
+2024/10/04-04:04:59.421 61f0 Reusing MANIFEST C:\Users\Guilherme Breve\Documents\GitHub\HubbixBot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/10/04-04:04:59.421 61f0 Recovering log #239
+2024/10/04-04:04:59.534 61f0 Reusing old log C:\Users\Guilherme Breve\Documents\GitHub\HubbixBot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000239.log 
+2024/10/04-04:05:04.194 2edc Level-0 table #245: started
+2024/10/04-04:05:04.220 2edc Level-0 table #245: 849184 bytes OK
+2024/10/04-04:05:04.222 2edc Delete type=0 #239
+2024/10/04-04:05:04.223 2edc Manual compaction at level-0 from '\x00K\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00L\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/10/04-04:05:06.855 2edc Compacting 1@1 + 2@2 files
+2024/10/04-04:05:07.117 2edc Generated table #246@1: 70380 keys, 2233727 bytes
+2024/10/04-04:05:07.364 2edc Generated table #247@1: 46162 keys, 1971913 bytes
+2024/10/04-04:05:07.364 2edc Compacted 1@1 + 2@2 files => 4205640 bytes
+2024/10/04-04:05:07.366 2edc compacted to: files[ 0 0 2 0 0 0 0 ]
+2024/10/04-04:05:07.366 2edc Delete type=2 #241
+2024/10/04-04:05:07.366 2edc Delete type=2 #242
+2024/10/04-04:05:07.366 2edc Delete type=2 #245
