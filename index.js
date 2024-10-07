@@ -23,7 +23,6 @@ var nome = null
 
 // Grupo de Demandas
 const grupo = '120363347815836895@g.us'
-const grupo2 = 'CNS - Demandas 🤖🎖'
 
 function zerar(){
     bv = null
@@ -34,8 +33,8 @@ function zerar(){
     nome = null
 }
 
-function errMsg(telefone, nome){
-    client.sendMessage(telefone, `Prezado(a) ${nome}. Estamos passando por problemas sistemicos, por gentileza tente novamente mais tarde, agradecemos seu contato!`)
+function errMsg(telefone, nome, cdg){
+    client.sendMessage(telefone, `Prezado(a) ${nome}. Estamos passando por problemas sistemicos, por gentileza tente novamente mais tarde, agradecemos seu contato! \n Código do Erro: ${cdg}`)
     zerar()
 }
 
@@ -84,11 +83,11 @@ client.on('message_create', async message =>{
 -- Prezados, segue relato do cliente que abriu um chamado pelo atendimento ao cliente interno, peço que tenham compreensão e tratem o caso da melhor maneira. 💫🌟`)
                                                             zerar()
                                                         }else if(res.status === 500){
-                                                            errMsg(telefone, nome)
+                                                            errMsg(telefone, nome, res.statusText)
                                                         }
                                                     })
                                                 }catch{
-                                                    errMsg(telefone, nome)
+                                                    errMsg(telefone, nome, 'Indefinido')
                                                 }
                                             }
                                         })

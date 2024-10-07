@@ -1,5 +1,5 @@
 import pyautogui as pg
-from webbrowser import open_new_tab as op, open, open_new
+from webbrowser import open_new
 from time import sleep
 
 link_chamado = 'https://portalprod.gpsvista.com.br/chamado/3013DE0D-E827-403C-B902-77F76B13CAB2'
@@ -11,9 +11,7 @@ def atalho(*keys):
 
 class Chamado:
     def abrir(self, nome, email, telefone, chamado, relato, tarefa):
-        # op(link_chamado)
-        # open_new(link_chamado)
-        open(link_chamado)
+        open_new(link_chamado)
         pg.click()
         sleep(5)
         pg.press('tab')
@@ -37,7 +35,7 @@ class Chamado:
         for i in range(3): pg.press('tab')
         pg.press('enter')
         atalho('ctrl','w')
-        atalho('alt','tab')
+        # atalho('alt','tab')
 
 if __name__ == '__main__':
     ch = Chamado()
