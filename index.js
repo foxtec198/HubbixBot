@@ -19,6 +19,7 @@ var tf = null
 var nm = null
 var cr = null
 var rl = null
+var nome = null
 
 // Grupo de Demandas
 const grupo = '120363347815836895@g.us'
@@ -30,6 +31,7 @@ function zerar(){
     nm = null
     cr = null
     rl = null
+    nome = null
 }
 
 function errMsg(telefone, nome){
@@ -44,7 +46,7 @@ client.on('message_create', async message =>{
         if(message.body && !message.fromMe && !bv && message.body !== 'sair'){
             message.reply("Olá seja bem vindo(a), Sou o CNS e estarei te atendendo!\nSelecione abaixo uma das opções que mais te atende!\n1 - Problema de Comunicação\n\n_Para encerrar o atendimento digite *sair* á qualquer momento_")
             bv = true
-            client.on('message_create', msgT=>{
+            client.on('message_create', async msgT=>{
                 // Confirma se existe mensagem, se nao foi enviada pelo bot
                 if(msgT && !msgT.fromMe){
                     // Confirma a opção da mensagem, se nao foi enviada pelo bot, a verificação de boasvindas e de nome da tarefa (false)
@@ -52,18 +54,18 @@ client.on('message_create', async message =>{
                         msgT.reply('Perfeito, agora digite seu primeiro nome!')
                         const nomeTarefa = 'Falha de Comunicação' //Seta o nome da tarefa, usado posteriormente
                         tf = true
-                        client.on('message_create', msgN => {
+                        client.on('message_create', async msgN => {
                             if(!nm && bv && tf && !cr && !rl && msgN.body.length > 3 && !msgN.fromMe){
-                                const nome = msgN.body
+                                nome = msgN.body
                                 const telefone = msgN.from
-                                nm = true
                                 msgN.reply(`Okay, ${nome}.\nDe qual unidade estamos falando?`)
-                                client.on('message_create', msgC => {
+                                nm = true
+                                client.on('message_create', async msgC => {
                                     if(!cr && bv && tf && nm && msgC.body.length >= 5 && !msgC.fromMe){
                                         const unidade = msgC.body
                                         cr = true
                                         msgC.reply(`Agora preciso que realize um breve relato sobre seu problema ${nome}, para que eu possa abrir um chamado para seu atendimento! \nEste relato será interno entre Gerente Regional somente, para que seja feito a tratativa seja completo nas informações, isso me ajudará.\n\n _Lembre-se, para abortar basta digitar *sair*!_`)
-                                        client.on('message_create', msgR => {
+                                        client.on('message_create', async msgR => {
                                             if(!rl && bv && tf && nm && cr && msgR.body.length >= 10 && !msgR.fromMe){
                                                 const relato = msgR.body
                                                 try{
