@@ -1,5 +1,5 @@
 import pyautogui as pg
-from webbrowser import open_new
+from webbrowser import open_new, open
 from time import sleep
 
 link_chamado = 'https://portalprod.gpsvista.com.br/chamado/3013DE0D-E827-403C-B902-77F76B13CAB2'
@@ -11,7 +11,7 @@ def atalho(*keys):
 
 class Chamado:
     def abrir(self, nome, email, telefone, chamado, relato, tarefa):
-        open_new(link_chamado)
+        open(link_chamado)
         pg.click()
         sleep(5)
         pg.press('tab')
