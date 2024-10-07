@@ -51,7 +51,7 @@ client.on('message_create', async message =>{
                     // Confirma a opção da mensagem, se nao foi enviada pelo bot, a verificação de boasvindas e de nome da tarefa (false)
                     if(msgT.body === '1' && !msgT.fromMe && bv && !tf){
                         msgT.reply('Perfeito, agora digite seu primeiro nome!')
-                        const nomeTarefa = 'Falha de Comunicação' //Seta o nome da tarefa, usado posteriormente
+                        const nomeTarefa = 'Falha de Comunica' //Seta o nome da tarefa, usado posteriormente
                         tf = true
                         client.on('message_create', async msgN => {
                             if(!nm && bv && tf && !cr && !rl && msgN.body.length > 3 && !msgN.fromMe){
