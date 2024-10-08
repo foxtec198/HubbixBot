@@ -1,31 +1,17 @@
-2024/10/08-16:21:44.253 4190 Reusing MANIFEST C:\Users\Guilherme Breve\Documents\GitHub\HubbixBot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/10/08-16:21:44.254 4190 Recovering log #441
-2024/10/08-16:21:44.362 4190 Reusing old log C:\Users\Guilherme Breve\Documents\GitHub\HubbixBot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000441.log 
-2024/10/08-16:21:47.283 75ec Level-0 table #448: started
-2024/10/08-16:21:47.320 75ec Level-0 table #448: 738127 bytes OK
-2024/10/08-16:21:47.321 75ec Delete type=0 #441
-2024/10/08-16:21:47.322 75ec Manual compaction at level-0 from '\x00v\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00w\x00\x00\x00' @ 0 : 0; will stop at (end)
-2024/10/08-16:21:50.349 7428 Compacting 1@1 + 3@2 files
-2024/10/08-16:21:50.635 7428 Generated table #449@1: 87156 keys, 2237197 bytes
-2024/10/08-16:21:50.756 7428 Generated table #450@1: 23271 keys, 2195032 bytes
-2024/10/08-16:21:50.892 7428 Generated table #451@1: 49928 keys, 1524576 bytes
-2024/10/08-16:21:50.892 7428 Compacted 1@1 + 3@2 files => 5956805 bytes
-2024/10/08-16:21:50.894 7428 compacted to: files[ 0 0 3 0 0 0 0 ]
-2024/10/08-16:21:50.895 7428 Delete type=2 #443
-2024/10/08-16:21:50.895 7428 Delete type=2 #444
-2024/10/08-16:21:50.895 7428 Delete type=2 #445
-2024/10/08-16:21:50.895 7428 Delete type=2 #448
-2024/10/08-16:26:53.368 3ea8 Level-0 table #453: started
-2024/10/08-16:26:53.395 3ea8 Level-0 table #453: 797508 bytes OK
-2024/10/08-16:26:53.397 3ea8 Delete type=0 #447
-2024/10/08-16:26:53.397 3ea8 Manual compaction at level-0 from '\x00w\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00x\x00\x00\x00' @ 0 : 0; will stop at (end)
-2024/10/08-16:26:58.623 1aa8 Compacting 1@1 + 3@2 files
-2024/10/08-16:26:58.908 1aa8 Generated table #454@1: 87170 keys, 2236695 bytes
-2024/10/08-16:26:58.999 1aa8 Generated table #455@1: 24385 keys, 2198563 bytes
-2024/10/08-16:26:59.108 1aa8 Generated table #456@1: 50884 keys, 1606123 bytes
-2024/10/08-16:26:59.108 1aa8 Compacted 1@1 + 3@2 files => 6041381 bytes
-2024/10/08-16:26:59.109 1aa8 compacted to: files[ 0 0 3 0 0 0 0 ]
-2024/10/08-16:26:59.110 1aa8 Delete type=2 #449
-2024/10/08-16:26:59.110 1aa8 Delete type=2 #450
-2024/10/08-16:26:59.110 1aa8 Delete type=2 #451
-2024/10/08-16:26:59.110 1aa8 Delete type=2 #453
+2024/10/08-18:59:19.922 6a94 Reusing MANIFEST C:\Users\Guilherme Breve\Documents\GitHub\HubbixBot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/10/08-18:59:19.922 6a94 Recovering log #458
+2024/10/08-18:59:20.053 6a94 Reusing old log C:\Users\Guilherme Breve\Documents\GitHub\HubbixBot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000458.log 
+2024/10/08-18:59:29.443 7e58 Level-0 table #465: started
+2024/10/08-18:59:29.500 7e58 Level-0 table #465: 989407 bytes OK
+2024/10/08-18:59:29.502 7e58 Delete type=0 #458
+2024/10/08-18:59:29.503 7e58 Manual compaction at level-0 from '\x00y\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00z\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/10/08-18:59:32.661 31a8 Compacting 1@1 + 3@2 files
+2024/10/08-18:59:32.989 31a8 Generated table #466@1: 86956 keys, 2235619 bytes
+2024/10/08-18:59:33.141 31a8 Generated table #467@1: 27422 keys, 2202301 bytes
+2024/10/08-18:59:33.279 31a8 Generated table #468@1: 52071 keys, 1749389 bytes
+2024/10/08-18:59:33.279 31a8 Compacted 1@1 + 3@2 files => 6187309 bytes
+2024/10/08-18:59:33.280 31a8 compacted to: files[ 0 0 3 0 0 0 0 ]
+2024/10/08-18:59:33.281 31a8 Delete type=2 #460
+2024/10/08-18:59:33.281 31a8 Delete type=2 #461
+2024/10/08-18:59:33.281 31a8 Delete type=2 #462
+2024/10/08-18:59:33.281 31a8 Delete type=2 #465
