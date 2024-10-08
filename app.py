@@ -13,6 +13,9 @@ def abrir_chamado():
             nome = request.args['nm']
             telefone = request.args['tel']
 
+            telefone = telefone.replace('55','')
+            telefone = telefone.replace('@c.us','')
+            
             if len(telefone) == 10:
                 ddd = telefone[0:2]
                 tel = telefone[2:]

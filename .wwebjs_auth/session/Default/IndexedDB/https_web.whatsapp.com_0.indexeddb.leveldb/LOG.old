@@ -1,4 +1,28 @@
-2024/10/04-12:53:39.590 1398 Reusing MANIFEST C:\Users\Guilherme Breve\Documents\GitHub\HubbixBot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/10/04-12:53:39.590 1398 Recovering log #325
-2024/10/04-12:53:39.681 1398 Reusing old log C:\Users\Guilherme Breve\Documents\GitHub\HubbixBot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000325.log 
-2024/10/04-12:53:41.536 63b4 Manual compaction at level-0 from '\x00]\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00^\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/10/08-16:19:04.671 37fc Reusing MANIFEST C:\Users\Guilherme Breve\Documents\GitHub\HubbixBot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/10/08-16:19:04.671 37fc Recovering log #435
+2024/10/08-16:19:04.676 37fc Reusing old log C:\Users\Guilherme Breve\Documents\GitHub\HubbixBot\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000435.log 
+2024/10/08-16:19:04.676 37fc Delete type=2 #437
+2024/10/08-16:19:06.070 7f2c Compacting 1@1 + 3@2 files
+2024/10/08-16:19:06.182 7f2c Generated table #438@1: 86737 keys, 2238570 bytes
+2024/10/08-16:19:06.266 7f2c Generated table #439@1: 22720 keys, 2194308 bytes
+2024/10/08-16:19:06.354 7f2c Generated table #440@1: 48617 keys, 1435820 bytes
+2024/10/08-16:19:06.355 7f2c Compacted 1@1 + 3@2 files => 5868698 bytes
+2024/10/08-16:19:06.356 7f2c compacted to: files[ 0 0 3 0 0 0 0 ]
+2024/10/08-16:19:06.356 7f2c Delete type=2 #432
+2024/10/08-16:19:06.356 7f2c Delete type=2 #433
+2024/10/08-16:19:06.356 7f2c Delete type=2 #434
+2024/10/08-16:19:06.356 7f2c Delete type=2 #436
+2024/10/08-16:19:06.621 7f2c Level-0 table #442: started
+2024/10/08-16:19:06.627 7f2c Level-0 table #442: 51103 bytes OK
+2024/10/08-16:19:06.629 7f2c Delete type=0 #435
+2024/10/08-16:19:06.630 7f2c Manual compaction at level-0 from '\x00u\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00v\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/10/08-16:19:10.740 7200 Compacting 1@1 + 3@2 files
+2024/10/08-16:19:10.899 7200 Generated table #443@1: 86758 keys, 2238810 bytes
+2024/10/08-16:19:10.991 7200 Generated table #444@1: 22660 keys, 2194190 bytes
+2024/10/08-16:19:11.113 7200 Generated table #445@1: 48713 keys, 1438526 bytes
+2024/10/08-16:19:11.113 7200 Compacted 1@1 + 3@2 files => 5871526 bytes
+2024/10/08-16:19:11.114 7200 compacted to: files[ 0 0 3 0 0 0 0 ]
+2024/10/08-16:19:11.115 7200 Delete type=2 #438
+2024/10/08-16:19:11.115 7200 Delete type=2 #439
+2024/10/08-16:19:11.115 7200 Delete type=2 #440
+2024/10/08-16:19:11.115 7200 Delete type=2 #442

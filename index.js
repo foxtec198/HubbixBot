@@ -22,6 +22,12 @@ var rl = null
 var nome = null
 var user = null
 
+// Dados de Opção
+var nome = ''
+var telefone = ''
+var unidade = ''
+var nomeTarefa = ''
+
 // Grupo de Demandas
 const grupo = '120363347815836895@g.us'
 
@@ -52,47 +58,42 @@ client.on('message_create', async msg =>{
         // Confirma a opção da mensagem, se nao foi enviada pelo bot, a verificação de boasvindas e de nome da tarefa (false)
         else if(bv && !tf && !nm && !cr && !rl && msg.body === '1' && !msg.fromMe && user === msg.from){
             msg.reply('Perfeito, agora digite seu primeiro nome!')
-            var nomeTarefa = 'Falha de Comunicação' //Seta o nome da tarefa, usado posteriormente
+            nomeTarefa = 'Falha de Comunicação' //Seta o nome da tarefa, usado posteriormente
             tf = true
         }
         else if(bv && tf && !nm && !cr && !rl && !nome && msg.body.length >= 3 && !msg.fromMe && user === msg.from){
             nome = msg.body
             nm = true
             msg.reply(`Okay, ${nome}.\nDe qual unidade estamos falando?`)
-            var telefone = msg.from
         }
         else if(bv && tf && nm && !cr && !rl && msg.body.length >= 5 && !msg.fromMe && user === msg.from){
-            var unidade = msg.body.toUpperCase()
+            unidade = msg.body.toUpperCase()
             msg.reply(`Agora preciso que realize um breve relato sobre seu problema ${nome}, para que eu possa abrir um chamado para seu atendimento! \nEste relato será interno entre Gerente Regional somente, para que seja feito a tratativa seja completo nas informações, isso me ajudará.\n\n _Lembre-se, para abortar basta digitar *sair*!_`)
             cr = true
         }
         else if(bv && tf && nm && cr && !rl && msg.body.length >= 10 && !msg.fromMe && user === msg.from){
-            var relato = msg.body
+            telefone = msg.from
+            relato = msg.body
             msg.reply('Aguarde um instante...')
-            try{
-                var telefoneContato = telefone.replace('55','')
-                telefoneContato = telefoneContato.replace('@c.us','')
-                fetch(`http://127.0.0.1:8971/abrir_chamado?tf=${nomeTarefa}&&nm=${nome}&&tel=${telefoneContato}&&cr=${unidade}&&rl=${relato}`, {method:'POST'})
-                .then(res=>{
-                    if(res.status === 201){
-                        msg.reply(`Prezado(a) ${nome}. É um prazer lhe atender, Informo que seu chamado foi aberto e direcionado ao Gerente Regional para a tratativa, pedimos desculpas desde já, e podemos garantir que estamos trabalhando na melhora do atendimento e na comunicação! \n\nAtenciosamente \n\n*CNS* 🤖 - _©️ Desenvolvido por Guilherme Breve 2024_`)
-                        client.sendMessage(grupo, `*Novo Chamado* - ${unidade} 🏛️
+            // var telefoneContato = telefone.replace('55','')
+            // telefoneContato = telefoneContato.replace('@c.us','')
+            fetch(`http://127.0.0.1:8971/abrir_chamado?tf=${nomeTarefa}&&nm=${nome}&&tel=${telefone}&&cr=${unidade}&&rl=${relato}`, {method:'POST'})
+            .then(res=>{
+                if(res.status === 201){
+                    msg.reply(`Prezado(a) ${nome}. É um prazer lhe atender, Informo que seu chamado foi aberto e direcionado ao Gerente Regional para a tratativa, pedimos desculpas desde já, e podemos garantir que estamos trabalhando na melhora do atendimento e na comunicação! \n\nAtenciosamente \n\n*CNS* 🤖 - _©️ Desenvolvido por Guilherme Breve 2024_`)
+                    client.sendMessage(grupo, `*Novo Chamado* - ${unidade} 🏛️
 🧑🏻 *Solicitante:* ${nome}
-📞 *Telefone:* ${telefoneContato}
+📞 *Telefone:* ${telefone}
 🅰️ *Tipo de Chamado:* ${nomeTarefa}
 🔓 *Relato:* ${relato}
 
 -- Prezados, segue relato do cliente que abriu um chamado pelo atendimento ao cliente interno, peço que tenham compreensão e tratem o caso da melhor maneira. 💫🌟`)
-                        zerar()
-                    }else if(res.status === 500){
-                        errMsg(msg, res.statusText)
-                        zerar()
-                    }
-                })
-            }catch{
-                errMsg(msg, 'Indefinido')
-                zerar()
-            }
+                    zerar()
+                }else if(res.status === 500){
+                    errMsg(msg, res.statusText)
+                    zerar()
+                }
+            })
         }
     }
     else if(msg.body.toLowerCase() === 'sair' && !msg.fromMe){
