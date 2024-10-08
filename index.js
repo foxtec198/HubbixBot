@@ -22,7 +22,7 @@ var rl = null
 var nome = null
 var user = null
 
-// Dados de Opção
+// Dados da Opção - 1
 var nome = ''
 var telefone = ''
 var unidade = ''
