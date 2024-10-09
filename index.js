@@ -63,8 +63,7 @@ client.on('message_create', async msg =>{
         // OPÇÃO 1 - ATENDIMENTO
         // Confirma a opção da mensagem, se nao foi enviada pelo bot, a verificação de boasvindas e de nome da tarefa (false)
         else if(bv && !tf && !nm && !cr && !rl && msg.body === '1' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
-            client.sendMessage(msg.from, 'Falha de Comunicação Selecionado')
-            msg.reply('Perfeito, agora digite seu primeiro nome!')
+            msg.reply('*Problemas no Atendimento* Selecionado\nPerfeito, agora digite seu primeiro nome!')
             nomeTarefa = 'Falha de Comunicação' //Seta o nome da tarefa, usado posteriormente
             tf = true
         }
@@ -124,8 +123,7 @@ client.on('message_create', async msg =>{
         // OPÇÃO 2 - DASHBOARD
         // Get Name
         else if(bv && !nm && !cr && !dash && !rl && !cd && msg.body === '2' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
-            client.sendMessage(msg.from, 'Erro com Dashboard Selecionado')
-            nm = 'Perfeito, agora digite seu primeiro nome!'
+            nm = '*Erro com Dashboard* Selecionado\nPerfeito, agora digite seu primeiro nome!'
             nomeTarefa = 'Problemas com Dashboard'
             msg.reply(nm)
         }
