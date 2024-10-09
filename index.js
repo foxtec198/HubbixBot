@@ -55,33 +55,33 @@ client.on('message_create', async msg =>{
         // Boas Vindas
         // Confirma se existe mensagem, se nao foi enviada pelo bot e se nao feita as boas vindas!
         if(!bv && !tf && !nm && !cr && !rl && msg.body && !msg.fromMe && msg.body.toLowerCase() !== 'sair'){
-            bv = "Olá seja bem vindo(a), Sou o CNS e estarei te atendendo!\Digite um número que condiza com a opção abaixo que mais te atende!\n\n\n--------------------------------------- \n1 - Problema de Atendimento\n2 - Erro com Dashboard\n3 - Problemas com o GPS Vista\n4 - Falar com um Atendente\n\n_Para encerrar o atendimento digite *sair* á qualquer momento._"
+            bv = "Olá seja bem vindo(a), Sou o CNS e estarei te atendendo!\nDigite um número que condiza com a opção abaixo que mais te atende!\n\n\n--------------------------------------- \n1 - Problema de Atendimento\n2 - Erro com Dashboard\n~3 - Problemas com o GPS Vista~\n~4 - Falar com um Atendente~\n\n_Para encerrar o atendimento digite *sair* á qualquer momento._"
             msg.reply(bv)
             user = msg.from
         }
 
         // OPÇÃO 1
         // Confirma a opção da mensagem, se nao foi enviada pelo bot, a verificação de boasvindas e de nome da tarefa (false)
-        else if(bv && !tf && !nm && !cr && !rl && msg.body === '1' && !msg.fromMe && user === msg.from){
+        else if(bv && !tf && !nm && !cr && !rl && msg.body === '1' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             client.sendMessage(msg.from, 'Falha de Comunicação Selecionado')
             msg.reply('Perfeito, agora digite seu primeiro nome!')
             nomeTarefa = 'Falha de Comunicação' //Seta o nome da tarefa, usado posteriormente
             tf = true
         }
         // Pega a Unidade do cliente!
-        else if(bv && tf && !nm && !cr && !rl && !nome && msg.body.length >= 3 && !msg.fromMe && user === msg.from){
+        else if(bv && tf && !nm && !cr && !rl && !nome && msg.body.length >= 3 && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             nome = msg.body
             nm = true
             msg.reply(`Okay, ${nome}.\nDe qual unidade estamos falando?`)
         }
         // Criando Relato do Cliente
-        else if(bv && tf && nm && !cr && !rl && msg.body.length >= 5 && !msg.fromMe && user === msg.from){
+        else if(bv && tf && nm && !cr && !rl && msg.body.length >= 5 && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             unidade = msg.body.toUpperCase()
             msg.reply(`Agora preciso que realize um breve relato sobre seu problema ${nome}, para que eu possa abrir um chamado para seu atendimento! \nEste relato será interno entre Gerente Regional somente, para que seja feito a tratativa seja completo nas informações, isso me ajudará.\n\n _Lembre-se, para abortar basta digitar *sair*!_`)
             cr = true
         }
         // Confirmação dos dados antes de enviar
-        else if(bv && tf && nm && cr && !rl && msg.body.length >= 10 && !msg.fromMe && user === msg.from){
+        else if(bv && tf && nm && cr && !rl && msg.body.length >= 10 && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             telefone = msg.from
             telefone = telefone.replace('55','')
             telefone = telefone.replace('@c.us','')
@@ -90,11 +90,11 @@ client.on('message_create', async msg =>{
             msg.reply(rl)
         }
         // Caso o relato nao alcance o minimo desejado
-        else if(bv && tf && nm && cr && !rl && msg.body.length < 10 && !msg.fromMe && user === msg.from){
+        else if(bv && tf && nm && cr && !rl && msg.body.length < 10 && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             msg.reply('Relato não atingiu o minimo de 10 caracteres! \nSeja mais completo por favor!')
         }
         // Confirmação dos dados, envio da mensagem no grupo da Regional e Abertura de Chamado no VISTA
-        else if(bv && tf && nm && cr && rl && msg.body === '1' && !msg.fromMe && user === msg.from){
+        else if(bv && tf && nm && cr && rl && msg.body === '1' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             msg.reply('Aguarde um instante...')
             client.sendMessage(grupo, `*Novo Chamado* 🔊
 🧑🏻 *Solicitante:* ${nome}
@@ -115,39 +115,39 @@ client.on('message_create', async msg =>{
             })
         }
         // Sair e descartar dados, não confirmação dos dados!
-        else if(bv && tf && nm && cr && rl && msg.body === '2' && !msg.fromMe && user === msg.from){
+        else if(bv && tf && nm && cr && rl && msg.body === '2' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
             zerar()
         }
 
         // OPÇÃO 2
         // Get Name
-        else if(bv && !nm && !cr && !dash && !rl && !cd && msg.body === '2' && !msg.fromMe && user === msg.from){
+        else if(bv && !nm && !cr && !dash && !rl && !cd && msg.body === '2' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             client.sendMessage(msg.from, 'Erro com Dashboard Selecionado')
             nm = 'Perfeito, agora digite seu primeiro nome!'
             nomeTarefa = 'Problemas com Dashboard'
             msg.reply(nm)
         }
         // Pega a Unidade
-        else if(bv && nm && !cr && !dash && !rl && !cd && msg.body.length >= 3 && !msg.fromMe && user === msg.from){
+        else if(bv && nm && !cr && !dash && !rl && !cd && msg.body.length >= 3 && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             nome = msg.body
             cr = `Okay, ${nome}.\nDe qual unidade estamos falando?`
             msg.reply(cr)
         }
         // Pega o Link do Dashboard (CASO HAJA)
-        else if(bv && nm && cr && !dash && !rl && !cd && msg.body.length >= 5 && !msg.fromMe && user === msg.from){
+        else if(bv && nm && cr && !dash && !rl && !cd && msg.body.length >= 5 && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             unidade = msg.body.toUpperCase()
             dash = 'Digite o link do dashboard com problemas, se não souber digite a palavra *"NÃO"* '
             msg.reply(dash)
         }
         // Relato do Problema
-        else if(bv && nm && cr && dash && !rl && !cd && !msg.fromMe && user === msg.from && msg.body.toLowerCase() === 'não' || msg.body.toLowerCase() === 'nao'){
+        else if(bv && nm && cr && dash && !rl && !cd && !msg.fromMe && user === msg.from && msg.body.toLowerCase() === 'não' || msg.body.toLowerCase() === 'nao' && msg.body.toLowerCase() !== 'sair'){
             link = msg.body
             rl = "Preciso que detalhe o problema para auxiliar o tratamento do mesmo, Relate de forma direta e completa por favor."
             msg.reply(rl)
         }
         // Confirmação dos dados
-        else if(bv && nm && cr && dash && rl && !cd && msg.body.length >= 10 && !msg.fromMe && user === msg.from){
+        else if(bv && nm && cr && dash && rl && !cd && msg.body.length >= 10 && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             telefone = msg.from
             telefone = telefone.replace('55','')
             telefone = telefone.replace('@c.us','')
@@ -155,7 +155,7 @@ client.on('message_create', async msg =>{
             msg.reply(`Ok vamos confirmar alguns dados. \nNome: ${nome}\nUnidade/CR: ${unidade}\nContato: ${telefone}\nTipo do Chamado: ${nomeTarefa}\nRelato: ${relato}\n\n\n\n-----------------------------------------\nDigite um número referente a opção selecionada!\n1 - Sim, Enviar\n2 - Não, Cancelar relato`)
 
         }
-        else if(bv && nm && cr && dash && rl && cd && msg.body === '1' && !msg.fromMe && user === msg.from){
+        else if(bv && nm && cr && dash && rl && cd && msg.body === '1' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             msg.reply('Aguarde um instante...')
             client.sendMessage(grupo, `*Novo Chamado* 🔊
 🧑🏻 *Solicitante:* ${nome}
@@ -176,7 +176,7 @@ client.on('message_create', async msg =>{
             })
         }
         // Cancela o atendimento
-        else if(bv && nm && cr && dash && rl && cd && msg.body === '2' && !msg.fromMe && user === msg.from){
+        else if(bv && nm && cr && dash && rl && cd && msg.body === '2' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
             zerar()
         }
