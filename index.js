@@ -114,12 +114,12 @@ client.on('message_create', async msg =>{
                 }
             })
         }
+        zerar()
         // Sair e descartar dados, não confirmação dos dados!
         else if(bv && tf && nm && cr && rl && msg.body === '2' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
             zerar()
         }
-
         // OPÇÃO 2
         // Get Name
         else if(bv && !nm && !cr && !dash && !rl && !cd && msg.body === '2' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
@@ -174,6 +174,7 @@ client.on('message_create', async msg =>{
                     zerar()
                 }
             })
+            zerar()
         }
         // Cancela o atendimento
         else if(bv && nm && cr && dash && rl && cd && msg.body === '2' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
