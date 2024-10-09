@@ -153,7 +153,7 @@ client.on('message_create', async msg =>{
             telefone = telefone.replace('@c.us','')
             relato = msg.body
             msg.reply(`Ok vamos confirmar alguns dados. \nNome: ${nome}\nUnidade/CR: ${unidade}\nContato: ${telefone}\nTipo do Chamado: ${nomeTarefa}\nRelato: ${relato}\n\n\n\n-----------------------------------------\nDigite um número referente a opção selecionada!\n1 - Sim, Enviar\n2 - Não, Cancelar relato`)
-
+            cd = true
         }
         else if(bv && nm && cr && dash && rl && cd && msg.body === '1' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             msg.reply('Aguarde um instante...')
