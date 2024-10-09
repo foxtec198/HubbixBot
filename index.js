@@ -60,7 +60,7 @@ client.on('message_create', async msg =>{
             user = msg.from
         }
 
-        // OPÇÃO 1
+        // OPÇÃO 1 - ATENDIMENTO
         // Confirma a opção da mensagem, se nao foi enviada pelo bot, a verificação de boasvindas e de nome da tarefa (false)
         else if(bv && !tf && !nm && !cr && !rl && msg.body === '1' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             client.sendMessage(msg.from, 'Falha de Comunicação Selecionado')
@@ -113,14 +113,15 @@ client.on('message_create', async msg =>{
                     zerar()
                 }
             })
+            zerar()
         }
-        zerar()
         // Sair e descartar dados, não confirmação dos dados!
         else if(bv && tf && nm && cr && rl && msg.body === '2' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
             zerar()
         }
-        // OPÇÃO 2
+
+        // OPÇÃO 2 - DASHBOARD
         // Get Name
         else if(bv && !nm && !cr && !dash && !rl && !cd && msg.body === '2' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
             client.sendMessage(msg.from, 'Erro com Dashboard Selecionado')
@@ -186,6 +187,7 @@ client.on('message_create', async msg =>{
             client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
             zerar()
         }
+        
     }
     // Sair do atendimento - Zera e Inicia novamente
     else if(msg.body.toLowerCase() === 'sair' && !msg.fromMe){
