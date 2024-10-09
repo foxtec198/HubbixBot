@@ -13,14 +13,20 @@ client.on('ready', _ =>{
     console.log('Em execução!')
 })
 
-// Steps - Passos
+// Steps Geral
 var bv = null
+var user = null
+
+// Steps - opção 1
 var tf = null
 var nm = null
 var cr = null
 var rl = null
 var nome = null
-var user = null
+
+// Steps - opção 2
+var dash = null
+
 
 // Dados da Opção - 1
 var nome = ''
@@ -55,22 +61,27 @@ client.on('message_create', async msg =>{
             msg.reply(bv)
             user = msg.from
         }
+        // OPÇÃO 1
         // Confirma a opção da mensagem, se nao foi enviada pelo bot, a verificação de boasvindas e de nome da tarefa (false)
         else if(bv && !tf && !nm && !cr && !rl && msg.body === '1' && !msg.fromMe && user === msg.from){
-            msg.reply('Perfeito, agora digite seu primeiro nome!')
+            client.sendMessage(msg.from, 'Falha de Comunicação Selecionado')
+            client.sendMessage(msg.from, 'Perfeito, agora digite seu primeiro nome!')
             nomeTarefa = 'Falha de Comunicação' //Seta o nome da tarefa, usado posteriormente
             tf = true
         }
+        // Pega a Unidade do cliente!
         else if(bv && tf && !nm && !cr && !rl && !nome && msg.body.length >= 3 && !msg.fromMe && user === msg.from){
             nome = msg.body
             nm = true
             msg.reply(`Okay, ${nome}.\nDe qual unidade estamos falando?`)
         }
+        // Criando Relato do Cliente
         else if(bv && tf && nm && !cr && !rl && msg.body.length >= 5 && !msg.fromMe && user === msg.from){
             unidade = msg.body.toUpperCase()
             msg.reply(`Agora preciso que realize um breve relato sobre seu problema ${nome}, para que eu possa abrir um chamado para seu atendimento! \nEste relato será interno entre Gerente Regional somente, para que seja feito a tratativa seja completo nas informações, isso me ajudará.\n\n _Lembre-se, para abortar basta digitar *sair*!_`)
             cr = true
         }
+        // Confirmação dos dados antes de enviar
         else if(bv && tf && nm && cr && !rl && msg.body.length >= 10 && !msg.fromMe && user === msg.from){
             telefone = msg.from
             telefone = telefone.replace('55','')
@@ -79,6 +90,11 @@ client.on('message_create', async msg =>{
             rl = `Ok vamos confirmar alguns dados. \nNome: ${nome}\nUnidade/CR: ${unidade}\nContato: ${telefone}\nTipo do Chamado: ${nomeTarefa}\nRelato: ${relato}\n\n\n\n-----------------------------------------\nDigite um número referente a opção selecionada!\n1 - Sim, Enviar\n2 - Não, Cancelar relato`
             msg.reply(rl)
         }
+        // Caso o relato nao alcance o minimo desejado
+        else if(bv && tf && nm && cr && !rl && msg.body.length < 10 && !msg.fromMe && user === msg.from){
+            msg.reply('Relato não atingiu o minimo de 10 caracteres! \nSeja mais completo por favor!')
+        }
+        // Confirmação dos dados, envio da mensagem no grupo da Regional e Abertura de Chamado no VISTA
         else if(bv && tf && nm && cr && rl && msg.body === '1' && !msg.fromMe && user === msg.from){
             msg.reply('Aguarde um instante...')
             client.sendMessage(grupo, `*Novo Chamado* 🔊
@@ -99,12 +115,26 @@ client.on('message_create', async msg =>{
                 }
             })
         }
+        // Sair e descartar dados, não confirmação dos dados!
         else if(bv && tf && nm && cr && rl && msg.body === '2' && !msg.fromMe && user === msg.from){
             client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
             zerar()
         }
-
+        // OPÇÃO 2
+        // Get Name
+        else if(bv && !nm && !cr && !dash && msg.body === '2' && !msg.fromMe && user === msg.from){
+            client.sendMessage(msg.from, 'Erro com Dashboard Selecionado')
+            nm = 'Perfeito, agora digite seu primeiro nome!'
+            nomeTarefa = 'Problemas com Dashboard'
+            msg.reply(nm)
+        }
+        // Pega a Unidade
+        else if(bv && nm && !cr && !dash && msg.body.length >= 3 && !msg.fromMe && user === msg.from){
+            nome = msg.body
+            console.log(nome)
+        }
     }
+    // Sair do atendimento - Zera e Inicia novamente
     else if(msg.body.toLowerCase() === 'sair' && !msg.fromMe){
         client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
         zerar()
