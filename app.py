@@ -23,15 +23,13 @@ def abrir_chamado():
 
             relato = request.args['rl']
             cr = request.args['cr']
-            body = f"""Novo Atendimento* - {cr} 🏛️
-🧑🏻 *Solicitante:* ${nome}
-📞 *Telefone:* {telefone}
-🅰️ *Tipo de Chamado:* {nomeChamado}
-🔓 *Relato:* {relato}
-
--- Prezados, segue relato do cliente que abriu um chamado pelo atendimento ao cliente interno, peço que tenham compreensão e tratem o caso da melhor maneira. 💫🌟
-"""
-            
+            body = f"""Novo Atendimento
+--------------------------------------------------
+Solicitante: {nome}
+Telefone: {telefone}
+Unidade: {cr}
+Tipo de Chamado: {nomeChamado}
+Relato: {relato}"""
             chamado.abrir(nome, 'cns@cns.com', telefone, nomeChamado, body, 'Falha de Comunicação')
             return '', 201
         except Exception as err: return err, 500

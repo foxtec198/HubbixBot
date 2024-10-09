@@ -64,7 +64,7 @@ client.on('message_create', async msg =>{
         // Confirma a opção da mensagem, se nao foi enviada pelo bot, a verificação de boasvindas e de nome da tarefa (false)
         else if(bv && !tf && !nm && !cr && !rl && msg.body === '1' && !msg.fromMe && user === msg.from){
             client.sendMessage(msg.from, 'Falha de Comunicação Selecionado')
-            client.sendMessage(msg.from, 'Perfeito, agora digite seu primeiro nome!')
+            msg.reply('Perfeito, agora digite seu primeiro nome!')
             nomeTarefa = 'Falha de Comunicação' //Seta o nome da tarefa, usado posteriormente
             tf = true
         }
@@ -155,7 +155,31 @@ client.on('message_create', async msg =>{
             msg.reply(`Ok vamos confirmar alguns dados. \nNome: ${nome}\nUnidade/CR: ${unidade}\nContato: ${telefone}\nTipo do Chamado: ${nomeTarefa}\nRelato: ${relato}\n\n\n\n-----------------------------------------\nDigite um número referente a opção selecionada!\n1 - Sim, Enviar\n2 - Não, Cancelar relato`)
 
         }
+        else if(bv && nm && cr && dash && rl && cd && msg.body === '1' && !msg.fromMe && user === msg.from){
+            msg.reply('Aguarde um instante...')
+            client.sendMessage(grupo, `*Novo Chamado* 🔊
+🧑🏻 *Solicitante:* ${nome}
+🏛️ *Unidade:* ${unidade}
+📞 *Telefone:* ${telefone}
+🅰️ *Tipo de Chamado:* ${nomeTarefa}
+🔓 *Relato:* ${relato}
 
+-- Prezados, segue relato do cliente que abriu um chamado pelo atendimento ao cliente interno, peço que tenham compreensão e tratem o caso da melhor maneira. 💫🌟`)
+            fetch(`http://127.0.0.1:8971/abrir_chamado?tf=${nomeTarefa}&&nm=${nome}&&tel=${telefone}&&cr=${unidade}&&rl=${relato}`, {method:'POST'})
+            .then(res=>{
+                if(res.status === 201){
+                    msg.reply(`Prezado(a) ${nome}. É um prazer lhe atender, Informo que seu chamado foi aberto e direcionado ao Gerente Regional para a tratativa, pedimos desculpas desde já, e podemos garantir que estamos trabalhando na melhora do atendimento e na comunicação! \n\nAtenciosamente \n\n*CNS* 🤖 - _©️ Desenvolvido por Guilherme Breve 2024_`)
+                }else if(res.status === 500){
+                    errMsg(msg, res.statusText)
+                    zerar()
+                }
+            })
+        }
+        // Cancela o atendimento
+        else if(bv && nm && cr && dash && rl && cd && msg.body === '2' && !msg.fromMe && user === msg.from){
+            client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
+            zerar()
+        }
         // Sair do atendimento - Zera e Inicia novamente
         else if(msg.body.toLowerCase() === 'sair' && !msg.fromMe){
             client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
