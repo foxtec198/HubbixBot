@@ -13,20 +13,15 @@ client.on('ready', _ =>{
     console.log('Em execução!')
 })
 
-// Steps Geral
 var bv = null
 var user = null
-
-// Steps - opção 1
 var tf = null
 var nm = null
 var cr = null
 var rl = null
 var nome = null
-
-// Steps - opção 2
 var dash = null
-
+var cd = null
 
 // Dados da Opção - 1
 var nome = ''
@@ -45,6 +40,8 @@ function zerar(){
     rl = null
     nome = null
     user = null
+    dash = null
+    cd = null
 }
 
 function errMsg(msg, cdg){
@@ -55,12 +52,14 @@ function errMsg(msg, cdg){
 client.on('message_create', async msg =>{
     // Confirma se é de Grupo (Total de 23 numeros) ou Privado (Total 17 numeros contando o @c.us)
     if(msg.from.length === 17){ 
+        // Boas Vindas
         // Confirma se existe mensagem, se nao foi enviada pelo bot e se nao feita as boas vindas!
         if(!bv && !tf && !nm && !cr && !rl && msg.body && !msg.fromMe && msg.body.toLowerCase() !== 'sair'){
             bv = "Olá seja bem vindo(a), Sou o CNS e estarei te atendendo!\Digite um número que condiza com a opção abaixo que mais te atende!\n\n\n--------------------------------------- \n1 - Problema de Atendimento\n2 - Erro com Dashboard\n3 - Problemas com o GPS Vista\n4 - Falar com um Atendente\n\n_Para encerrar o atendimento digite *sair* á qualquer momento._"
             msg.reply(bv)
             user = msg.from
         }
+
         // OPÇÃO 1
         // Confirma a opção da mensagem, se nao foi enviada pelo bot, a verificação de boasvindas e de nome da tarefa (false)
         else if(bv && !tf && !nm && !cr && !rl && msg.body === '1' && !msg.fromMe && user === msg.from){
@@ -120,18 +119,47 @@ client.on('message_create', async msg =>{
             client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
             zerar()
         }
+
         // OPÇÃO 2
         // Get Name
-        else if(bv && !nm && !cr && !dash && msg.body === '2' && !msg.fromMe && user === msg.from){
+        else if(bv && !nm && !cr && !dash && !rl && !cd && msg.body === '2' && !msg.fromMe && user === msg.from){
             client.sendMessage(msg.from, 'Erro com Dashboard Selecionado')
             nm = 'Perfeito, agora digite seu primeiro nome!'
             nomeTarefa = 'Problemas com Dashboard'
             msg.reply(nm)
         }
         // Pega a Unidade
-        else if(bv && nm && !cr && !dash && msg.body.length >= 3 && !msg.fromMe && user === msg.from){
+        else if(bv && nm && !cr && !dash && !rl && !cd && msg.body.length >= 3 && !msg.fromMe && user === msg.from){
             nome = msg.body
-            console.log(nome)
+            cr = `Okay, ${nome}.\nDe qual unidade estamos falando?`
+            msg.reply(cr)
+        }
+        // Pega o Link do Dashboard (CASO HAJA)
+        else if(bv && nm && cr && !dash && !rl && !cd && msg.body.length >= 5 && !msg.fromMe && user === msg.from){
+            unidade = msg.body.toUpperCase()
+            dash = 'Digite o link do dashboard com problemas, se não souber digite a palavra *"NÃO"* '
+            msg.reply(dash)
+        }
+        // Relato do Problema
+        else if(bv && nm && cr && dash && !rl && !cd && !msg.fromMe && user === msg.from && msg.body.toLowerCase() === 'não' || msg.body.toLowerCase() === 'nao'){
+            link = msg.body
+            rl = "Preciso que detalhe o problema para auxiliar o tratamento do mesmo, Relate de forma direta e completa por favor."
+            msg.reply(rl)
+        }
+        // Confirmação dos dados
+        else if(bv && nm && cr && dash && rl && !cd && msg.body.length >= 10 && !msg.fromMe && user === msg.from){
+            telefone = msg.from
+            telefone = telefone.replace('55','')
+            telefone = telefone.replace('@c.us','')
+            relato = msg.body
+            msg.reply(`Ok vamos confirmar alguns dados. \nNome: ${nome}\nUnidade/CR: ${unidade}\nContato: ${telefone}\nTipo do Chamado: ${nomeTarefa}\nRelato: ${relato}\n\n\n\n-----------------------------------------\nDigite um número referente a opção selecionada!\n1 - Sim, Enviar\n2 - Não, Cancelar relato`)
+
+        }
+
+        // Sair do atendimento - Zera e Inicia novamente
+        else if(msg.body.toLowerCase() === 'sair' && !msg.fromMe){
+            client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
+            zerar()
         }
     }
     // Sair do atendimento - Zera e Inicia novamente
