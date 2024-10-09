@@ -10,7 +10,7 @@ def atalho(*keys):
         pg.press(keys[1])
 
 class Chamado:
-    def abrir(self, nome, email, telefone, chamado, relato, tarefa):
+    def abrir(self, nome, email, telefone, relato, tarefa):
         open_new(link_chamado)
         pg.click()
         sleep(5)
@@ -21,7 +21,7 @@ class Chamado:
         pg.press('tab')
         pg.write(telefone.strip('@c.us'))
         pg.press('tab')
-        pg.write(chamado)
+        pg.write(tarefa)
         pg.press('tab')
         pg.press('space')
         pg.press('tab')
@@ -35,7 +35,6 @@ class Chamado:
         for i in range(3): pg.press('tab')
         pg.press('enter')
         atalho('ctrl','w')
-        # atalho('alt','tab')
 
 if __name__ == '__main__':
     ch = Chamado()

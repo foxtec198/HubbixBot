@@ -30,7 +30,7 @@ Telefone: {telefone}
 Unidade: {cr}
 Tipo de Chamado: {nomeChamado}
 Relato: {relato}"""
-            chamado.abrir(nome, 'cns@cns.com', telefone, nomeChamado, body, 'Falha de Comunicação')
+            chamado.abrir(nome, 'cns@cns.com', telefone, body, nomeChamado)
             return '', 201
         except Exception as err: return err, 500
 

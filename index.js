@@ -108,12 +108,12 @@ client.on('message_create', async msg =>{
             .then(res=>{
                 if(res.status === 201){
                     msg.reply(`Prezado(a) ${nome}. É um prazer lhe atender, Informo que seu chamado foi aberto e direcionado ao Gerente Regional para a tratativa, pedimos desculpas desde já, e podemos garantir que estamos trabalhando na melhora do atendimento e na comunicação! \n\nAtenciosamente \n\n*CNS* 🤖 - _©️ Desenvolvido por Guilherme Breve 2024_`)
+                    zerar()
                 }else if(res.status === 500){
                     errMsg(msg, res.statusText)
                     zerar()
                 }
             })
-            zerar()
         }
         // Sair e descartar dados, não confirmação dos dados!
         else if(bv && tf && nm && cr && rl && msg.body === '2' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
@@ -170,12 +170,12 @@ client.on('message_create', async msg =>{
             .then(res=>{
                 if(res.status === 201){
                     msg.reply(`Prezado(a) ${nome}. É um prazer lhe atender, Informo que seu chamado foi aberto e direcionado ao Gerente Regional para a tratativa, pedimos desculpas desde já, e podemos garantir que estamos trabalhando na melhora do atendimento e na comunicação! \n\nAtenciosamente \n\n*CNS* 🤖 - _©️ Desenvolvido por Guilherme Breve 2024_`)
+                    zerar()
                 }else if(res.status === 500){
                     errMsg(msg, res.statusText)
                     zerar()
                 }
             })
-            zerar()
         }
         // Cancela o atendimento
         else if(bv && nm && cr && dash && rl && cd && msg.body === '2' && !msg.fromMe && user === msg.from && msg.body.toLowerCase() !== 'sair'){
