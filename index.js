@@ -51,7 +51,7 @@ client.on('message_create', async msg =>{
     if(msg.from.length === 17){ 
         // Confirma se existe mensagem, se nao foi enviada pelo bot e se nao feita as boas vindas!
         if(!bv && !tf && !nm && !cr && !rl && msg.body && !msg.fromMe && msg.body.toLowerCase() !== 'sair'){
-            bv = "Olá seja bem vindo(a), Sou o CNS e estarei te atendendo!\nSelecione abaixo uma das opções que mais te atende!\n1 - Problema de Comunicação\n\n_Para encerrar o atendimento digite *sair* á qualquer momento._"
+            bv = "Olá seja bem vindo(a), Sou o CNS e estarei te atendendo!\Digite um número que condiza com a opção abaixo que mais te atende!\n\n\n--------------------------------------- \n1 - Problema de Atendimento\n2 - Erro com Dashboard\n3 - Problemas com o GPS Vista\n4 - Falar com um Atendente\n\n_Para encerrar o atendimento digite *sair* á qualquer momento._"
             msg.reply(bv)
             user = msg.from
         }
@@ -73,7 +73,13 @@ client.on('message_create', async msg =>{
         }
         else if(bv && tf && nm && cr && !rl && msg.body.length >= 10 && !msg.fromMe && user === msg.from){
             telefone = msg.from
+            telefone = telefone.replace('55','')
+            telefone = telefone.replace('@c.us','')
             relato = msg.body
+            rl = `Ok vamos confirmar alguns dados. \nNome: ${nome}\nUnidade/CR: ${unidade}\nContato: ${telefone}\nTipo do Chamado: ${nomeTarefa}\nRelato: ${relato}\n\n\n\n-----------------------------------------\nDigite um número referente a opção selecionada!\n1 - Sim, Enviar\n2 - Não, Cancelar relato`
+            msg.reply(rl)
+        }
+        else if(bv && tf && nm && cr && rl && msg.body === '1' && !msg.fromMe && user === msg.from){
             msg.reply('Aguarde um instante...')
             client.sendMessage(grupo, `*Novo Chamado* 🔊
 🧑🏻 *Solicitante:* ${nome}
@@ -93,6 +99,11 @@ client.on('message_create', async msg =>{
                 }
             })
         }
+        else if(bv && tf && nm && cr && rl && msg.body === '2' && !msg.fromMe && user === msg.from){
+            client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
+            zerar()
+        }
+
     }
     else if(msg.body.toLowerCase() === 'sair' && !msg.fromMe){
         client.sendMessage(msg.from, 'Agradecemos seu contato, Até mais! \nSempre que precisar me aciona aqui.')
