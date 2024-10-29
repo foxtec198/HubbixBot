@@ -1,6 +1,17 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
-const client = new Client({authStrategy: new LocalAuth()});
+// const client = new Client({authStrategy: new LocalAuth()});
+
+const client = new Client({
+    puppeteer: {
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox'
+        ],
+        authStrategy: new LocalAuth()
+    }
+})
+
 
 
 // Se o login nao estiver o OK gera um QR para leitura e conexão!
