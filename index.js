@@ -8,8 +8,8 @@ const client = new Client({
           '--no-sandbox',
           '--disable-setuid-sandbox'
         ],
-        authStrategy: new LocalAuth()
-    }
+    },
+    authStrategy: new LocalAuth()
 })
 
 
