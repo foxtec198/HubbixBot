@@ -12,8 +12,6 @@ const client = new Client({
     authStrategy: new LocalAuth()
 })
 
-
-
 // Se o login nao estiver o OK gera um QR para leitura e conexão!
 client.on('qr', qr =>{
     qrcode.generate(qr, {small: true});
